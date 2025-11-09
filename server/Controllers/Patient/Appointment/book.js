@@ -1,4 +1,4 @@
-const  database  = require('../../../Database/Patient/Appointment/Book');
+const  database  = require('../../../Database/Patient/Appointment/book');
 const  {sendPushNotification, addNotification}  = require('../../notifications');
 
 const bookAppointment = async (req, res) => {

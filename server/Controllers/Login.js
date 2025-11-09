@@ -4,6 +4,7 @@ const { createToken } = require('../Utilities');
 const { ACCESS_TOKEN_EXPIRATION_IN_MILLISECONDS } = process.env;
 
 const login = async (req, res) => {
+    console.log("Received request:", req.body); 
     const email = req.body.email;
     const password = req.body.password;
     let message = '';

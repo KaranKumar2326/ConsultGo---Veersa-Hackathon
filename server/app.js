@@ -34,7 +34,7 @@ const emailRoute = require("./Routes/Email");
 
 const chatRoute = require("./Routes/Chat");
 const { globalErrorHanlder } = require("./Utilities");
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 const app = express();
 
 app.use(
@@ -45,9 +45,7 @@ app.use(
 );
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+
 app.use("/login", userLoginRoute);
 app.use("/logout", userLogoutRoute);
 app.use("/patient/register", patientRegisterRoute);
@@ -89,7 +87,22 @@ app.use("/", (req, res, next) => {
   });
 });
 
+
+app.get("/test", (req, res) => {
+  res.json({ message: "Server is running" });
+});
+
 app.use(globalErrorHanlder);
+
+// health check
+app.get("/health", (req, res) => {
+  console.log('Health check route hit');
+  res.status(200).json({
+    status: "success",
+    ok: true,
+    message: "Health check successful",
+  });
+});
 
 app.listen(port, (error) => {
   if (error) {

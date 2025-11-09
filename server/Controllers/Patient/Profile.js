@@ -65,26 +65,7 @@ const patientViewRequests = async (req, res) => {
     }
   };
   
-// need to be edited to new version of this function
-// const patientAppointments = async (req, res) => {
-//     const patientUserId = req.id;
-//     const patientEmail = req.email;
-//     let message = '';
-//     if (!patientUserId) {
-//         message = 'Patient ID not found';
-//         return res.status(404).json(message);
-//     }
-//     if (!patientEmail) {
-//         message = 'Patient email not found';
-//         return res.status(404).json(message);
-//     }
-//     const appointments = await database.retrievePatientAppointments(patientUserId, patientEmail);
-//     if (!appointments) {
-//         message = 'Could not retrieve patient appointments';
-//         return res.status(400).json(message);
-//     }
-//     return res.json(appointments);
-// };
+
 
 const patientDoctors = async (req, res) => {
     const patientUserId = req.id;

@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const { ACCESS_TOKEN_SECRET_KEY } = process.env;
 
+
 const tokenAuthentication = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   if (!authHeader) {
@@ -11,6 +12,8 @@ const tokenAuthentication = (req, res, next) => {
   if (!token) {
     return res.status(401).json({ message: "Token missing" });
   }
+
+  console.log("Verifying secret:", ACCESS_TOKEN_SECRET_KEY); // Debugging line
 
   jwt.verify(token, ACCESS_TOKEN_SECRET_KEY, (err, user) => {
     if (err) {

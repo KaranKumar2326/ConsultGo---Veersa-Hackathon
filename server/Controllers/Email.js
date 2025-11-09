@@ -91,7 +91,7 @@ const sendEmail = async (req, res) => {
             // const user = await database.getUserByEmail(sendToEmail[0]);
             // if (user) {
                 let mailOptions = {
-                    from: `"Telemhealth Platform" <${sendFromEmail}>`,
+                    from: `"Telemedicine Platform" <${sendFromEmail}>`,
                     to: sendToEmail[0],
                     subject: subject,
                     text: message,

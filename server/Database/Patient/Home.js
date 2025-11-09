@@ -5,26 +5,9 @@ const { PGHOST, PGDATABASE, PGUSER, PGPORT } = process.env;
 let PGPASSWORD = process.env.PGPASSWORD;
 PGPASSWORD = decodeURIComponent(PGPASSWORD);
 
-const pool = new pg.Pool({
-    user: PGUSER,
-    host: PGHOST,
-    database: PGDATABASE,
-    password: PGPASSWORD,
-    port: PGPORT,
-    ssl: {
-        rejectUnauthorized: true,
-    },
-});
+const pool = require('../db');
 
-(async () => {
-    try {
-        const client = await pool.connect();
-        console.log('Connected to the database');
-        client.release();
-    } catch (error) {
-        console.error('Database connection error', error.stack);
-    }
-})();
+ 
 const retrievePatient = async (id, email) => {
     try {
         const result = await pool.query('SELECT * FROM users WHERE user_email = $1 AND user_role = $2 AND user_id = $3', [email, 'Patient', id]);

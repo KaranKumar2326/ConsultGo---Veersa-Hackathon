@@ -7,20 +7,7 @@ const doctorRegister = async (req, res) => {
   let message = "";
   const { personalInfo, certificates, experiences, interests, Languages } =
     req.body;
-  // if (
-  //   !personalInfo.firstName ||
-  //   !personalInfo.lastName ||
-  //   !personalInfo.birthdate ||
-  //   !personalInfo.email ||
-  //   !personalInfo.gender ||
-  //   !personalInfo.password ||
-  //   !personalInfo.phone ||
-  //   !personalInfo.speciality
-  // ) {
-  //   message = "Please fill all personalInfo fields";
-  //   console.log(message);
-  //   return res.status(400).json({ message });
-  // }
+  
   const emailFlag = await database.checkUserEmail(personalInfo.email);
   if (emailFlag) {
     message = "Email already exists";
