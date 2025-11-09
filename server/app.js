@@ -31,6 +31,7 @@ const doctorPatientsummaryRoute = require("./Routes/Doctor/Patientsummary");
 const doctorAvailabilityRoute = require("./Routes/Doctor/Availability");
 const notificationsRoute = require("./Routes/notifications");
 const emailRoute = require("./Routes/Email");
+const squareRoute = require("./Routes/Square");
 
 const chatRoute = require("./Routes/Chat");
 const { globalErrorHanlder } = require("./Utilities");
@@ -76,6 +77,7 @@ app.use("/doctor/PatientSummary", doctorPatientsummaryRoute);
 app.use("/appointment-chat", chatRoute);
 app.use("/notifications", notificationsRoute);
 app.use("/email-service", emailRoute);
+app.use(squareRoute);
 
 /// backOffice
 app.use("/backOffice", backOfficeRoute);
