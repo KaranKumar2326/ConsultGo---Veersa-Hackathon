@@ -1,6 +1,6 @@
 const express = require('express');
 const doctorAddAvailabilityController = require('../../Controllers/Doctor/Availability/add');
-const doctorDeleteAvailabilityController = require('../../Controllers/Doctor/Availability/Delete');
+const doctorDeleteAvailabilityController = require('../../Controllers/Doctor/Availability/delete');
 const doctorViewAvailabilityController = require('../../Controllers/Doctor/Availability/view');
 const { tokenAuthentication } = require('../../middleware/User/Authentication');
 
