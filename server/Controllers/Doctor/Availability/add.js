@@ -1,4 +1,4 @@
-const database = require('../../../Database/Doctor/Availability/Add');
+const database = require('../../../Database/Doctor/Availability/add');
 
 
 const addAvailability = async (req, res) => {
