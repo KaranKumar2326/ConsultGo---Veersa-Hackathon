@@ -1,5 +1,5 @@
 const express = require('express');
-const patientAppointmentBookController = require('../../../Controllers/Patient/Appointment/Book');
+const patientAppointmentBookController = require('../../../Controllers/Patient/Appointment/book');
 const patientGetAvailabilitiesController = require('../../../Controllers/Patient/Appointment/patientGetAvailabilities');
 const patientGetAppointmentsHistoryController = require('../../../Controllers/Patient/Appointment/appointmentsHistory');
 const pendingappointmrntsController = require('../../../Controllers/Patient/Appointment/pendingappointments');
