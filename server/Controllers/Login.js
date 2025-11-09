@@ -43,7 +43,7 @@ const login = async (req, res) => {
         return res.status(400).json(message);
     }
     
-    return res.json({ message: 'Login successful', token: token, Notifications: unreadCount  });
+    return res.json({ message: 'Login successful', token: token, role: user[0].user_role, Notifications: unreadCount  });
 }
 
 module.exports = { login };
