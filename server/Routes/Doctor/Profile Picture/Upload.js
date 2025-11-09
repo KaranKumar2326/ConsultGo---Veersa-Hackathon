@@ -1,5 +1,5 @@
 const doctorProfilePictureUploadController = require('../../../Controllers/Doctor/Profile Picture/Upload');
-const { tokenAuthentication } = require('../../../Middleware/User/Authentication');
+const { tokenAuthentication } = require('../../../middleware/User/Authentication');
 const express = require('express');
 const router = express.Router();
 

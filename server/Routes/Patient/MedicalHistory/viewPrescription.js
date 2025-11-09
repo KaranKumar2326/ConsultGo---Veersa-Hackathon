@@ -2,7 +2,7 @@
 
 const express = require('express');
 const patientHistoryViewPrescriptionController = require('../../../Controllers/Patient/MedicalHistory/viewPrescription');
-// const { tokenAuthentication } = require('../../Middleware/User/Authentication');
+// const { tokenAuthentication } = require('../../middleware/User/Authentication');
 
 const router = express.Router();
 

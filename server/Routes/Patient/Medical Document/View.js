@@ -1,5 +1,5 @@
 const patientMedicalDocumentViewController = require('../../../Controllers/Patient/Medical Document/View');
-const { tokenAuthentication } = require('../../../Middleware/User/Authentication');
+const { tokenAuthentication } = require('../../../middleware/User/Authentication');
 const express = require('express');
 const router = express.Router();
 

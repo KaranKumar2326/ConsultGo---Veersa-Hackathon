@@ -6,7 +6,7 @@ const pendingappointmrntsController = require('../../../Controllers/Patient/Appo
 const GetDetailsController = require('../../../Controllers/Patient/Appointment/appointmentDetails');
 const patientsubmitReview = require('../../../Controllers/Patient/Appointment/SubmitReview');
 
-const { tokenAuthentication } = require('../../../Middleware/User/Authentication');
+const { tokenAuthentication } = require('../../../middleware/User/Authentication');
 const router = express.Router();
 
 

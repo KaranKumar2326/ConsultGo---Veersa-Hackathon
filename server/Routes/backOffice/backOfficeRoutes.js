@@ -1,7 +1,7 @@
 const express = require("express");
 const backOfficeController = require("../../Controllers/backOffice/backOfficeController");
 const GetDetailsController = require('../../Controllers/backOffice/appointmentDetails');
-const { tokenAuthentication } = require("../../Middleware/User/Authentication");
+const { tokenAuthentication } = require("../../middleware/User/Authentication");
 const { restrictTo } = require("../../Utilities");
 const router = express.Router();
 
