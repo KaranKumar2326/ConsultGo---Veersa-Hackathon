@@ -16,7 +16,6 @@ const SquarePayment: React.FC<SquarePaymentProps> = ({
 }) => {
   const handlePayment = async (token: string) => {
     try {
-      // ✅ Call your Node backend API
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_NAME}/api/square-pay`,
         {
