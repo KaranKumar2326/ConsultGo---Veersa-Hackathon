@@ -26,14 +26,13 @@ const Banner = () => {
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-tight">
             Connect with{" "}
             <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent">
-              experts online
+              medical experts {" "}
             </span>
-            , effortlessly
+              online, effortlessly
           </h1>
 
           <p className="text-xl md:text-2xl text-gray-600 leading-relaxed">
-            ConsultGo is your trusted platform for expert consultations in any
-            field. Get personalized guidance anytime, anywhere.
+            ConsultGo is your trusted platform for expert doctor consultation. Get personalized guidance anytime, anywhere.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
