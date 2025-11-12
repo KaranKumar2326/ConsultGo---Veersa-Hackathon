@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import { Dialog } from "primereact/dialog"; // PrimeReact Dialog
 import dynamic from "next/dynamic"; // Dynamic import for Agora UIKit
@@ -7,56 +6,30 @@ const AgoraUIKit = dynamic(() => import("agora-react-uikit"), { ssr: false });
 import { layout } from "agora-react-uikit"; // Import layout from Agora UIKit
 import "agora-react-uikit/dist/index.css"; // Import Agora UIKit CSS
 
-const VideoCallDialog: React.FC<{ isOpen: boolean; onHide: () => void }> = ({
+interface VideoCallDialogProps {
+  isOpen: boolean; // Determines whether the dialog is open
+  onHide: () => void; // Callback to hide/close the dialog
+  onError?: (error: string) => void; // Error handling callback
+}
+
+const VideoCallDialog: React.FC<VideoCallDialogProps> = ({
   isOpen,
   onHide,
+  onError,
 }) => {
   const [isHost, setHost] = useState(true); // Manages host/audience role
   const [isPinned, setPinned] = useState(false); // Toggles layout mode
   const [username, setUsername] = useState("guest"); // Manages the user's name
   const [isClient, setIsClient] = useState(false); // Ensures client-side rendering
-  const [transcript, setTranscript] = useState(""); // To store live transcription
-  const [isRecognitionActive, setRecognitionActive] = useState(false); // Manage recognition state
 
-  const agoraAppId = "cd1f3f29ef86458a8fce0a2a3c5b192b"; // Your Agora App ID
-
-  // Web Speech API for Transcription
-  useEffect(() => {
-    if (!("webkitSpeechRecognition" in window)) {
-      console.error("Your browser does not support SpeechRecognition.");
-      return;
-    }
-
-    const recognition = new window.webkitSpeechRecognition();
-    recognition.continuous = true; // Keep listening continuously
-    recognition.interimResults = true; // Allow partial results
-    recognition.lang = "en-US"; // Set the language
-
-    recognition.onresult = (event) => {
-      const lastResult = event.results[event.results.length - 1];
-      const transcript = lastResult[0].transcript;
-      setTranscript(transcript); // Update state with live transcription
-    };
-
-    recognition.onstart = () => {
-      setRecognitionActive(true); // Set active when recognition starts
-    };
-
-    recognition.onend = () => {
-      setRecognitionActive(false); // Set inactive when recognition ends
-    };
-
-    recognition.start(); // Start listening
-
-    return () => recognition.stop(); // Cleanup on component unmount
-  }, []);
+  const agoraAppId = 'cd1f3f29ef86458a8fce0a2a3c5b192b';
 
   // Handle missing Agora App ID
   useEffect(() => {
     if (!agoraAppId && onError) {
       onError("Agora App ID is not defined in environment variables.");
     }
-  }, [agoraAppId]);
+  }, [agoraAppId, onError]);
 
   // Ensure component is only rendered client-side
   useEffect(() => {
@@ -129,18 +102,15 @@ const VideoCallDialog: React.FC<{ isOpen: boolean; onHide: () => void }> = ({
           {agoraAppId ? (
             <AgoraUIKit
               rtcProps={{
-                appId: agoraAppId as string,
+                appId: agoraAppId as string, // Agora App ID from environment variables
                 channel: "test", // Replace with dynamic channel name if needed
                 token: null, // Add token handling here
                 role: isHost ? "host" : "audience",
                 layout: isPinned ? layout.pin : layout.grid,
+                // layout: isPinned ? layout.pin : layout.grid,
                 enableScreensharing: true,
-                video: true, // Ensure video is enabled
               }}
-              rtmProps={{
-                username: username || "user",
-                displayUsername: true,
-              }}
+              rtmProps={{ username: username || "user", displayUsername: true }}
               callbacks={{
                 EndCall: onHide,
               }}
@@ -149,17 +119,6 @@ const VideoCallDialog: React.FC<{ isOpen: boolean; onHide: () => void }> = ({
             <p className="text-red-600">Failed to load Agora components.</p>
           )}
         </div>
-      </div>
-
-      {/* Display live transcription */}
-      <div style={{ marginTop: "20px" }}>
-        <h3>Live Transcription</h3>
-        <p>{transcript}</p>
-        {isRecognitionActive ? (
-          <p>Transcription is active</p>
-        ) : (
-          <p>Transcription is stopped</p>
-        )}
       </div>
     </Dialog>
   );
